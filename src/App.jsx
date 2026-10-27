@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import './App.css'
+import AuthPage from './components/AuthPage'
+import TrainersSection from './components/TrainersSection'
+import FaqSection from './components/FaqSection'
 
 const imagePath = (name) => `/img/${name}`
 
@@ -12,16 +15,18 @@ function LandingPage({ onRegister }) {
     <div className="landing-page">
       <nav className={`menu ${menuOpen ? 'active' : ''}`}>
         <div className="container flex menu-inner">
-          <button className="mobile-btn" type="button" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle menu">
+          <button className="mobile-btn" type="button" onClick={() => setMenuOpen((open) => !open)} aria-label="Toggle menu" aria-expanded={menuOpen} aria-controls="main-navigation">
             <span />
             <span />
             <span />
           </button>
           <a className="logo" href="#top" onClick={closeMenu}>GYM</a>
-          <ul className="nav">
+          <ul className="nav" id="main-navigation">
             <li className="nav-item"><a href="#top" onClick={closeMenu}>Home</a></li>
             <li className="nav-item"><a href="#why-us" onClick={closeMenu}>Features</a></li>
             <li className="nav-item"><a href="#explore" onClick={closeMenu}>Explore</a></li>
+            <li className="nav-item"><a href="#trainers" onClick={closeMenu}>Trainers</a></li>
+            <li className="nav-item"><a href="#faq" onClick={closeMenu}>FAQ</a></li>
             <li className="nav-item"><a href="#discount" onClick={closeMenu}>Register</a></li>
           </ul>
           <button className="btn nav-register" type="button" onClick={onRegister}>Register</button>
@@ -63,19 +68,7 @@ function LandingPage({ onRegister }) {
         </div>
       </section>
 
-      <section className="section trainers" id="trainers">
-        <h2 className="primary mb">Our Professional Trainers</h2>
-        <div className="container flex">
-          {['trainer1.jpg', 'trainer2.jpg', 'trainer3.jpg'].map((image, index) => (
-            <article className="trainer" key={image}>
-              <img src={imagePath(image)} alt={`Professional trainer ${index + 1}`} />
-              <h3 className="secondary mb">Alan Smith</h3>
-              <p className="tertiary mb">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-              <a className="btn-2" href="#discount" aria-label="View trainer">-&gt;</a>
-            </article>
-          ))}
-        </div>
-      </section>
+      <TrainersSection />
 
       <section className="section" id="testimonial">
         <div className="container flex">
@@ -102,6 +95,8 @@ function LandingPage({ onRegister }) {
         </div>
       </section>
 
+      <FaqSection />
+
       <div className="footer">
         <FooterLinks title="Quick Links" items={['Offers & Discounts', 'Get Coupon', 'Contact Us', 'About']} />
         <FooterLinks title="Fashion in Area" items={['Gym Accessories', 'helath tips', 'choose your timings', 'Rules for Gym']} />
@@ -114,38 +109,6 @@ function LandingPage({ onRegister }) {
 
 function FooterLinks({ title, items }) {
   return <div className="links"><h3>{title}</h3><ul>{items.map((item) => <li key={item}>{item}</li>)}</ul></div>
-}
-
-function AuthPage({ onBack }) {
-  const [signup, setSignup] = useState(false)
-
-  return (
-    <main className="auth-page">
-      <button className="back-link" type="button" onClick={onBack}>&lt; Back to home</button>
-      <header><h1 className="heading">GYM</h1></header>
-      <div className="auth-container">
-        <div className={`auth-slider ${signup ? 'moveslider' : ''}`} />
-        <div className="auth-tabs">
-          <button type="button" onClick={() => setSignup(false)}>Login</button>
-          <button type="button" onClick={() => setSignup(true)}>Signup</button>
-        </div>
-        <div className={`form-section ${signup ? 'form-section-move' : ''}`}>
-          <form className="login-box" onSubmit={(event) => event.preventDefault()}>
-            <input type="email" className="ele" placeholder="youremail@email.com" aria-label="Email" />
-            <input type="password" className="ele" placeholder="password" aria-label="Password" />
-            <button className="clkbtn" type="submit">Login</button>
-          </form>
-          <form className="signup-box" onSubmit={(event) => event.preventDefault()}>
-            <input type="text" className="ele" placeholder="Enter your name" aria-label="Name" />
-            <input type="email" className="ele" placeholder="youremail@email.com" aria-label="Email" />
-            <input type="password" className="ele" placeholder="password" aria-label="Password" />
-            <input type="password" className="ele" placeholder="Confirm password" aria-label="Confirm password" />
-            <button className="clkbtn" type="submit">Signup</button>
-          </form>
-        </div>
-      </div>
-    </main>
-  )
 }
 
 function App() {
