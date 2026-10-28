@@ -1,6 +1,4 @@
-
-
-const questions = [
+onst questions = [
   { question: 'How do I open the registration form?', answer: 'Use Register in the navigation or Get Started Now on the home page. Choose Signup to try the registration form.' },
   { question: 'Does signup create a real account?', answer: 'This prototype checks required fields, email format, password length and matching passwords in your browser. Account creation and login are not connected yet, and form details are not saved.' },
   { question: 'Can I track attendance and fees here?', answer: 'Attendance, fee tracking and member records are planned features. The current version demonstrates the landing page, trainer filtering and account form validation.' },
