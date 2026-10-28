@@ -1,31 +1,3 @@
-/*
-Sarthak - branch, file and PR instructions
-
-1. Open a terminal in your EXISTING cloned project folder.
-   Before copying this file, run:
-   git switch dev
-   git pull
-   git switch -c feat/account-form-validation
-   If switching or pulling fails, resolve the error before continuing.
-
-2. Extract AuthPage.jsx from the ZIP and place it here:
-   src/components/AuthPage.jsx
-   Create the components folder inside src if needed.
-   Styles are included in this file; no separate CSS file is needed.
-
-3. From the project root, run:
-   git add src/components/AuthPage.jsx
-   git commit -m "feat: validate account forms and toggle password visibility"
-   git push -u origin feat/account-form-validation
-
-4. On GitHub, create a pull request:
-   Base branch: dev
-   Compare branch: feat/account-form-validation
-   PR title: Validate account forms and toggle password visibility
-   Describe your change and how you checked it.
-   Leave the PR open for the project reviewer to review and merge into dev.
-   Do not merge it yourself or push directly to dev.
-*/
 import { useState } from 'react'
 
 export default function AuthPage({ onBack }) {
