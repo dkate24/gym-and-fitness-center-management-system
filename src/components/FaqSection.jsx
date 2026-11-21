@@ -1,7 +1,7 @@
 const questions = [
   { question: 'How do I open the registration form?', answer: 'Use Register in the navigation or Get Started Now on the home page. Choose Signup to try the registration form.' },
-  { question: 'Does signup create a real account?', answer: 'This prototype checks required fields, email format, password length and matching passwords in your browser. Account creation and login are not connected yet, and form details are not saved.' },
-  { question: 'Can I track attendance and fees here?', answer: 'Attendance, fee tracking and member records are planned features. The current version demonstrates the landing page, trainer filtering and account form validation.' },
+  { question: 'How does signup work?', answer: 'Signup saves a demo account. You can then log in with the same email and password to open the management screens. Use sample details for this project.' },
+  { question: 'Can I track attendance and fees here?', answer: 'Yes. After logging in, open Members to add members, assign trainers, mark attendance for today and set fee status to Paid or Pending. Changes are saved for the next visit.' },
 ]
 
 export default function FaqSection() {

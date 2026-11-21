@@ -4,4 +4,11 @@ import { defineConfig } from 'vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: '127.0.0.1',
+    proxy: { '/api': 'http://127.0.0.1:3001' },
+  },
+  preview: {
+    proxy: { '/api': 'http://127.0.0.1:3001' },
+  },
 })
