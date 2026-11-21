@@ -1,0 +1,28 @@
+[
+  {
+    "id": "member-1",
+    "name": "Arjun Mehta",
+    "phone": "9000000011",
+    "trainerId": "trainer-2",
+    "feeStatus": "Paid",
+    "attendanceDates": [
+      "2026-11-23"
+    ]
+  },
+  {
+    "id": "member-2",
+    "name": "Priya Sharma",
+    "phone": "9000000012",
+    "trainerId": "trainer-2",
+    "feeStatus": "Pending",
+    "attendanceDates": []
+  },
+  {
+    "id": "member-3",
+    "name": "Kabir Gupta",
+    "phone": "9000000013",
+    "trainerId": "trainer-3",
+    "feeStatus": "Paid",
+    "attendanceDates": []
+  }
+]
