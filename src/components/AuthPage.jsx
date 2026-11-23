@@ -1,13 +1,17 @@
 import { useState } from 'react'
+import { api } from '../api'
 
-export default function AuthPage({ onBack }) {
-  const [signup, setSignup] = useState(false)
+export default function AuthPage({ onBack, onSignedIn, initialSignup = false }) {
+  const [signup, setSignup] = useState(initialSignup)
   const [showPassword, setShowPassword] = useState(false)
   const [message, setMessage] = useState('')
+  const [busy, setBusy] = useState(false)
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
-    const data = new FormData(event.currentTarget)
+    if (busy) return
+    const form = event.currentTarget
+    const data = new FormData(form)
     if (signup && !data.get('name').trim()) {
       setMessage('Please enter your name, using more than spaces.')
       return
@@ -16,7 +20,26 @@ export default function AuthPage({ onBack }) {
       setMessage('Passwords do not match. Please enter them again.')
       return
     }
-    setMessage('Form validation passed. This is a frontend demo; no account was created or signed in.')
+    setBusy(true)
+    setMessage('')
+    try {
+      const user = await api(signup ? '/signup' : '/login', {
+        method: 'POST',
+        body: { name: data.get('name'), email: data.get('email'), password: data.get('password') },
+      })
+      if (signup) {
+        form.reset()
+        setSignup(false)
+        setShowPassword(false)
+        setMessage('Account created. Log in with your email and password.')
+      } else {
+        onSignedIn(user)
+      }
+    } catch (error) {
+      setMessage(error.message)
+    } finally {
+      setBusy(false)
+    }
   }
 
   function switchForm(nextSignup) {
@@ -42,22 +65,23 @@ export default function AuthPage({ onBack }) {
 .form-message { min-height: 42px; font-size: 14px; color: #333; }
 .auth-page:has(.auth-demo) { justify-content: flex-start; padding-top: 80px; }
 .auth-demo :focus-visible { outline: 3px solid #165f56; outline-offset: 3px; }
+.auth-demo button:disabled { opacity: .6; cursor: wait; }
 `}</style>
       <button className="back-link" type="button" onClick={onBack}>&lt; Back to home</button>
       <header><h1 className="heading">GYM</h1></header>
       <div className="auth-container auth-demo">
         <div className="auth-tabs" aria-label="Account form">
-          <button type="button" aria-pressed={!signup} onClick={() => switchForm(false)}>Login</button>
-          <button type="button" aria-pressed={signup} onClick={() => switchForm(true)}>Signup</button>
+          <button type="button" disabled={busy} aria-pressed={!signup} onClick={() => switchForm(false)}>Login</button>
+          <button type="button" disabled={busy} aria-pressed={signup} onClick={() => switchForm(true)}>Signup</button>
         </div>
-        <p className="auth-note">Frontend prototype. Do not enter a real password.</p>
+        <p className="auth-note">Demo login: demo@gym.com / gymdemo123<br />Use sample details for this project.</p>
         <form className="account-form" key={signup ? 'signup' : 'login'} onSubmit={handleSubmit} onChange={() => setMessage('')}>
           {signup && <label>Name<input className="ele" name="name" autoComplete="name" required maxLength={80} placeholder="Enter your name" /></label>}
           <label>Email<input className="ele" type="email" name="email" autoComplete="email" required placeholder="youremail@email.com" /></label>
           <label>Password<input className="ele" type={showPassword ? 'text' : 'password'} name="password" autoComplete={signup ? 'new-password' : 'current-password'} minLength={8} required placeholder="At least 8 characters" /></label>
           {signup && <label>Confirm password<input className="ele" type={showPassword ? 'text' : 'password'} name="confirmPassword" autoComplete="new-password" minLength={8} required placeholder="Re-enter your password" /></label>}
           <label className="password-toggle"><input type="checkbox" checked={showPassword} onChange={(event) => setShowPassword(event.target.checked)} /> Show passwords</label>
-          <button className="clkbtn" type="submit">{signup ? 'Signup' : 'Login'}</button>
+          <button className="clkbtn" disabled={busy} type="submit">{busy ? 'Please wait…' : signup ? 'Signup' : 'Login'}</button>
           <p className="form-message" role="status">{message}</p>
         </form>
       </div>
