@@ -1,0 +1,61 @@
+.management { min-height: 100vh; background: #f4f6f5; color: #182b27; font-family: 'Nunito', sans-serif; }
+.management-width { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+.management-header { background: #102b26; color: #fff; padding: 20px 0; }
+.management-topbar, .account-actions { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.management-brand { font-size: 26px; font-weight: 700; }
+.management-brand span { font-size: 18px; font-weight: 400; margin-left: 12px; }
+.account-actions { font-size: 16px; }
+.account-actions span { overflow-wrap: anywhere; }
+.management button { cursor: pointer; padding: 10px 18px; min-height: 44px; border: 1px solid #b8c8c2; border-radius: 6px; background: #fff; color: #182b27; font-weight: 700; }
+.management button:hover { background: #e9f3ee; }
+.management button:disabled { cursor: not-allowed; opacity: .55; }
+.management-nav { background: #fff; border-bottom: 1px solid #d6dfda; }
+.management-nav .management-width { display: flex; gap: 12px; padding: 10px 0; }
+.management-nav button { border: 0; }
+.management-nav button[aria-current='page'], .management .management-primary { background: #165f56; color: #fff; border-color: #165f56; }
+.management .management-primary:hover { background: #104a42; }
+.management-main { padding: 16px 0 48px; }
+.management-main h1 { margin: 0 0 8px; font-size: 32px; font-weight: 700; }
+.management-main h2 { margin: 0 0 20px; font-size: 22px; font-weight: 700; }
+.page-description { color: #4d6159; margin: 0 0 28px; max-width: 70ch; }
+.management-panel { background: #fff; border: 1px solid #d6dfda; border-radius: 8px; padding: 24px; margin-bottom: 24px; }
+.management-panel > p { margin: 0 0 20px; }
+.management-status { min-height: 26px; margin: 0 0 12px; color: #165f56; }
+.management-error { margin: 8px 0 16px; padding: 16px; background: #fff0ed; color: #8e291b; border-radius: 6px; }
+.management-error button { margin: 8px; }
+.summary-counts { display: grid; grid-template-columns: repeat(3, 1fr); margin: 0 0 32px; padding: 24px 0; border-top: 1px solid #c7d5cd; border-bottom: 1px solid #c7d5cd; gap: 24px; }
+.summary-counts dt { color: #4d6159; font-size: 16px; }
+.summary-counts dd { margin: 4px 0 0; font-size: 36px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.management-form { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 16px; border: 0; margin: 0; padding: 0; min-width: 0; }
+.management-form label { display: flex; flex-direction: column; gap: 8px; flex: 1 1 180px; font-weight: 700; }
+.management input:not([type='checkbox']), .management select { width: 100%; min-height: 44px; padding: 9px 12px; background: #fff; border: 1px solid #9bafa4; border-radius: 5px; color: #182b27; font: inherit; }
+.management input::placeholder { color: #65756d; }
+.management input[type='checkbox'] { width: 22px; height: 22px; accent-color: #165f56; cursor: pointer; }
+.list-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.list-heading h2 { margin-bottom: 0; }
+.list-heading > span, .management-footnote { color: #4d6159; font-size: 15px; }
+.inline-label { display: flex; align-items: center; gap: 12px; }
+.inline-label select { width: auto; max-width: 220px; }
+.table-scroll { overflow-x: auto; }
+.management table { width: 100%; min-width: 800px; border-collapse: collapse; text-align: left; font-size: 16px; }
+.management th, .management td { padding: 16px 12px; border-bottom: 1px solid #dce4df; }
+.management th { font-weight: 700; }
+.management thead { background: #f0f5f2; }
+.management td select { min-width: 120px; }
+.management td:nth-child(3) select { min-width: 160px; }
+.management .management-remove { color: #9b3023; border-color: #d6bdb6; }
+.management :focus-visible { outline: 3px solid #165f56; outline-offset: 3px; }
+@media (max-width: 650px) {
+  .management-width { width: calc(100% - 28px); }
+  .management-topbar { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .account-actions { width: 100%; }
+  .management-brand span { margin-left: 8px; }
+  .management-nav .management-width { gap: 4px; }
+  .management-nav button { flex: 1; padding: 10px 8px; font-size: 15px; }
+  .management-panel { padding: 18px 14px; }
+  .management-form label { flex-basis: 100%; }
+  .management-form > button { width: 100%; }
+  .summary-counts { gap: 12px; }
+  .summary-counts dt { font-size: 14px; }
+  .summary-counts dd { font-size: 30px; }
+}
